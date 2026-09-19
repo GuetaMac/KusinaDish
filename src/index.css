@@ -18,6 +18,7 @@
   html {
     background: var(--color-papel);
     color: var(--color-toyo);
+    scrollbar-color: var(--color-dahon) transparent;
   }
   body {
     font-family: var(--font-body);
@@ -36,6 +37,21 @@
     outline: 3px solid var(--color-sili);
     outline-offset: 3px;
     border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-calamansi);
+    color: var(--color-toyo);
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-dahon) 55%, transparent);
+    border-radius: 999px;
+    border: 3px solid var(--color-papel);
   }
 }
 
@@ -72,5 +88,103 @@
   .steam {
     animation: none;
     opacity: 0.7;
+  }
+}
+
+/* Isang galaw sa pagbukas ng hero: sunod-sunod na lumulutang papasok */
+@keyframes rise-up {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.rise-up {
+  animation: rise-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Tatak ng "Kaya ko na" — parang selyo na hinampas sa papel */
+@keyframes stamp-slam {
+  0% {
+    transform: scale(2.4) rotate(-22deg);
+    opacity: 0;
+  }
+  55% {
+    transform: scale(0.9) rotate(5deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.06) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+.stamp-slam {
+  animation: stamp-slam 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Munting bounce kapag nagbago ang bilang (servings, checkbox) */
+@keyframes bump {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.22);
+  }
+}
+.bump {
+  animation: bump 0.32s ease-out;
+}
+
+@keyframes slide-down-fade {
+  from {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.slide-down {
+  animation: slide-down-fade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Guto-guto (confetti) na tila piniraso-piraso na dahon ng saging/sili */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-8px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(140px) rotate(280deg);
+    opacity: 0;
+  }
+}
+.confetti-piece {
+  animation: confetti-fall 1.2s ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-up,
+  .stamp-slam,
+  .bump,
+  .slide-down,
+  .confetti-piece {
+    animation: none !important;
+  }
+}
+
+/* Shared-element na paglipat sa pagitan ng listahan at detalye ng ulam */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.32s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

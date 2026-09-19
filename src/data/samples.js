@@ -10,7 +10,7 @@ export const samples = [
       "Manok na binabad sa toyo at oyster sauce, tapos nilaga sa suka. Panalo sa kanin.",
     category: "Ulam",
     tags: ["manok", "adobo", "toyo", "oyster sauce", "suka"],
-    image: "",
+    image: "/images/adobo.jpg",
     cookTime: 45,
     servings: 4,
     difficulty: "Madali",

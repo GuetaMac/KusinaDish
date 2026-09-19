@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeftIcon,
   CheckIcon,
   ClockIcon,
   MinusIcon,
   PlusIcon,
+  SparkleIcon,
 } from "./Icons";
 import { KayaKoNaButton } from "./KayaKoNa";
 import { categoryTone, formatAmount } from "../lib/format";
+import { useScrollProgress } from "../hooks";
+
+const CONFETTI = ["bg-sili", "bg-calamansi", "bg-dahon", "bg-toyo"];
 
 export default function RecipeDetail({ recipe, done, onToggleDone }) {
   const [servings, setServings] = useState(recipe.servings);
   const [checked, setChecked] = useState(() => new Set());
   const [stepsDone, setStepsDone] = useState(() => new Set());
   const [imgFailed, setImgFailed] = useState(false);
+  const [bump, setBump] = useState(false);
+  const [celebrate, setCelebrate] = useState(false);
+  const scrollProgress = useScrollProgress();
 
   const factor = servings / recipe.servings;
   const progress = Math.round((stepsDone.size / recipe.steps.length) * 100);
@@ -25,8 +32,28 @@ export default function RecipeDetail({ recipe, done, onToggleDone }) {
       return next;
     });
 
+  const bumpServings = (fn) => {
+    setServings(fn);
+    setBump(true);
+  };
+  useEffect(() => {
+    if (!bump) return;
+    const t = setTimeout(() => setBump(false), 320);
+    return () => clearTimeout(t);
+  }, [bump]);
+
+  // Isang beses lang sumasabog ang confetti — sa sandaling makumpleto lahat.
+  useEffect(() => {
+    if (progress === 100) setCelebrate(true);
+  }, [progress]);
+
   return (
     <>
+      <div
+        className="fixed left-0 top-0 z-30 h-1 bg-calamansi transition-[width] duration-150 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+        aria-hidden="true"
+      />
       <header className="tile-pattern text-papel">
         <div className="mx-auto max-w-6xl px-5 pb-10 pt-6">
           <div className="flex items-center justify-between">
@@ -38,7 +65,7 @@ export default function RecipeDetail({ recipe, done, onToggleDone }) {
               Balik sa menu
             </a>
             <span className="font-display text-2xl font-extrabold tracking-tight text-calamansi">
-              Kusina
+              Kusina ni Macky
             </span>
           </div>
 
@@ -72,6 +99,7 @@ export default function RecipeDetail({ recipe, done, onToggleDone }) {
                 src={recipe.image}
                 alt={recipe.title}
                 onError={() => setImgFailed(true)}
+                style={{ viewTransitionName: `dish-image-${recipe.id}` }}
                 className="aspect-square w-full max-w-72 rounded-3xl object-cover shadow-[0_6px_0_0_rgba(0,0,0,0.25)] md:justify-self-end"
               />
             )}
@@ -89,20 +117,23 @@ export default function RecipeDetail({ recipe, done, onToggleDone }) {
             <div className="mt-4 flex items-center justify-between rounded-2xl bg-papel p-2">
               <button
                 type="button"
-                onClick={() => setServings((s) => Math.max(1, s - 1))}
+                onClick={() => bumpServings((s) => Math.max(1, s - 1))}
                 aria-label="Bawasan ang servings"
-                className="grid size-10 place-items-center rounded-xl bg-white hover:bg-calamansi"
+                className="grid size-10 place-items-center rounded-xl bg-white transition-transform hover:bg-calamansi active:scale-90"
               >
                 <MinusIcon className="size-5" />
               </button>
-              <p className="font-display font-bold" aria-live="polite">
+              <p
+                className={`font-display font-bold ${bump ? "bump" : ""}`}
+                aria-live="polite"
+              >
                 Para sa {servings} tao
               </p>
               <button
                 type="button"
-                onClick={() => setServings((s) => Math.min(20, s + 1))}
+                onClick={() => bumpServings((s) => Math.min(20, s + 1))}
                 aria-label="Dagdagan ang servings"
-                className="grid size-10 place-items-center rounded-xl bg-white hover:bg-calamansi"
+                className="grid size-10 place-items-center rounded-xl bg-white transition-transform hover:bg-calamansi active:scale-90"
               >
                 <PlusIcon className="size-5" />
               </button>
@@ -176,7 +207,7 @@ export default function RecipeDetail({ recipe, done, onToggleDone }) {
                     type="button"
                     onClick={() => toggle(setStepsDone, i)}
                     aria-pressed={d}
-                    className={`flex w-full gap-4 rounded-2xl border-2 p-4 text-left transition-colors ${
+                    className={`flex w-full gap-4 rounded-2xl border-2 p-4 text-left transition-all active:scale-[0.99] ${
                       d
                         ? "border-dahon/30 bg-dahon/5"
                         : "border-toyo/10 bg-white hover:border-dahon"
@@ -207,10 +238,37 @@ export default function RecipeDetail({ recipe, done, onToggleDone }) {
             })}
           </ol>
 
+          {progress === 100 && (
+            <div className="slide-down relative mt-6 overflow-hidden rounded-2xl bg-dahon p-5 text-papel">
+              {celebrate && (
+                <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-around">
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <span
+                      key={i}
+                      aria-hidden="true"
+                      className={`confetti-piece block size-2 rounded-sm ${CONFETTI[i % CONFETTI.length]}`}
+                      style={{ animationDelay: `${i * 60}ms` }}
+                    />
+                  ))}
+                </div>
+              )}
+              <p className="inline-flex items-center gap-2 font-display text-lg font-extrabold">
+                <SparkleIcon className="size-5 text-calamansi" />
+                Handa na ang {recipe.title}!
+              </p>
+              <p className="mt-1 text-papel/85">
+                Tapos na ang lahat ng hakbang. Kain na tayo.
+              </p>
+            </div>
+          )}
+
           {stepsDone.size > 0 && (
             <button
               type="button"
-              onClick={() => setStepsDone(new Set())}
+              onClick={() => {
+                setStepsDone(new Set());
+                setCelebrate(false);
+              }}
               className="mt-4 font-display font-semibold text-toyo/70 underline underline-offset-4 hover:text-sili"
             >
               I-reset ang mga hakbang

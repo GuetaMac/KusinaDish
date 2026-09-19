@@ -11,7 +11,7 @@ export const recipes = [
       "Maasim at mainit na sabaw na may baboy at gulay. Bagay na bagay sa kanin.",
     category: "Sabaw",
     tags: ["baboy", "sabaw", "maasim"],
-    image: "",
+    image: "/images/sinigang.jpg",
     cookTime: 60,
     servings: 4,
     difficulty: "Madali",
@@ -75,7 +75,7 @@ export const recipes = [
       "Malapot at malinamnam na nilagang karne sa sarsang may liver spread. Beef, pork, o chicken, ikaw ang bahala.",
     category: "Ulam",
     tags: ["caldereta", "beef", "baboy", "manok", "liver spread"],
-    image: "",
+    image: "/images/caldereta.jpg",
     cookTime: 90,
     servings: 4,
     difficulty: "Katamtaman",
@@ -155,7 +155,7 @@ export const recipes = [
       "Karne sa tomato sauce na may patatas, carrots, green peas, at bell pepper. Kaunting Reno para sa sarap.",
     category: "Ulam",
     tags: ["afritada", "chicken", "manok", "baboy", "beef", "tomato sauce"],
-    image: "",
+    image: "/images/afritada.jpg",
     cookTime: 60,
     servings: 4,
     difficulty: "Madali",
@@ -1142,6 +1142,97 @@ export const recipes = [
       {
         title: "Serve na.",
         text: "Kapag okay na yung lasa at malambot na lahat, huli nating ilagay yung pechay. Lutuin lang hanggang maluto yung pechay. Huwag sobra para hindi malata.",
+      },
+    ],
+  },
+  {
+    id: "crispy-kare-kare",
+    title: "Crispy Kare-Kare",
+    description:
+      "Crispy fried pork na may malapot at malasang peanut sauce, sinamahan ng gulay at bagoong.",
+    category: "Ulam",
+    tags: ["kare-kare", "baboy", "peanut sauce", "bagoong", "crispy"],
+    image: "",
+    cookTime: 90,
+    servings: 4,
+    difficulty: "Katamtaman",
+
+    ingredients: [
+      { name: "pork belly o liempo", amount: 1, unit: "kg", note: "" },
+      { name: "bawang", amount: null, unit: "", note: "minced" },
+      { name: "sibuyas", amount: null, unit: "", note: "chopped" },
+      { name: "atsuete", amount: null, unit: "", note: "" },
+      { name: "tubig", amount: null, unit: "", note: "" },
+      { name: "peanut butter", amount: null, unit: "", note: "" },
+      { name: "Mama Sita's Kare-Kare Mix", amount: null, unit: "", note: "" },
+      { name: "patis", amount: null, unit: "", note: "" },
+      { name: "paminta", amount: null, unit: "", note: "" },
+      { name: "Magic Sarap", amount: null, unit: "", note: "" },
+      { name: "vetsin", amount: null, unit: "", note: "" },
+      { name: "sitaw", amount: null, unit: "", note: "hiniwa" },
+      { name: "talong", amount: null, unit: "", note: "hiniwa" },
+      { name: "pechay", amount: null, unit: "", note: "" },
+      { name: "okra", amount: null, unit: "", note: "optional" },
+      { name: "cooking oil", amount: null, unit: "", note: "" },
+      { name: "bagoong", amount: null, unit: "", note: "" },
+    ],
+
+    steps: [
+      {
+        title: "Pakuluan muna natin yung pork.",
+        text: "Bebe, pakuluan muna yung pork sa tubig hanggang lumambot. Kapag malambot na, hanguin at patuyuin nang mabuti.",
+      },
+      {
+        title: "Iprito hanggang crispy.",
+        text: "Iprito yung pork sa mainit na mantika hanggang maging golden brown at crispy. Kapag crispy na, itabi muna.",
+      },
+      {
+        title: "Ihanda yung gulay.",
+        text: "Para sa gulay, pwede nating pakuluan o blanch nang hiwalay yung sitaw, talong, okra, at pechay. Huwag sobrang lutuin para hindi malata. Itabi muna pagkatapos.",
+      },
+      {
+        title: "Tunawin yung atsuete.",
+        text: "Para naman sa sauce, tunawin muna yung atsuete sa kaunting tubig para lumabas yung kulay. Haluin nang mabuti.",
+      },
+      {
+        title: "Gisa na tayo.",
+        text: "Sa kawali, igisa yung bawang at sibuyas hanggang mabango.",
+      },
+      {
+        title: "Isunod yung atsuete.",
+        text: "Ilagay yung tinunaw na atsuete kasama yung tubig nito. Haluin.",
+      },
+      {
+        title: "Peanut butter na.",
+        text: "Idagdag yung peanut butter at haluin habang unti-unting nilalagyan ng tubig hanggang maging smooth yung sauce.",
+      },
+      {
+        title: "Kare-Kare mix na.",
+        text: "Ilagay yung Mama Sita's Kare-Kare Mix. Haluin nang mabuti hanggang matunaw at lumapot yung sauce.",
+      },
+      {
+        title: "Timplahan na natin.",
+        text: "Timplahan ng patis, paminta, Magic Sarap, at vetsin. Tikman muna bago dagdagan dahil may alat at lasa na yung Kare-Kare Mix.",
+      },
+      {
+        title: "Palaputin natin.",
+        text: "Pakuluan yung sauce hanggang lumapot at maging malinamnam. Kung masyadong malapot, dagdagan lang ng kaunting tubig.",
+      },
+      {
+        title: "Final taste test.",
+        text: "Tikman ulit, bebe, tapos i-adjust yung patis, paminta, o Magic Sarap depende sa panlasa mo.",
+      },
+      {
+        title: "I-arrange sa plato.",
+        text: "I-arrange na natin sa serving plate: ilagay yung crispy pork, tapos yung sitaw, talong, okra, at pechay sa gilid.",
+      },
+      {
+        title: "Ihain ang sauce nang hiwalay.",
+        text: "Ibuhos o ihain nang hiwalay yung kare-kare sauce para manatiling crispy yung pork.",
+      },
+      {
+        title: "Serve na.",
+        text: "At syempre, bagoong sa tabi. Ayan bebe, kumpleto na talaga ang Crispy Kare-Kare natin.",
       },
     ],
   },
