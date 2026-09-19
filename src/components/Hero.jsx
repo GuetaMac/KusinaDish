@@ -47,7 +47,7 @@ export default function Hero({ query, onQuery, totalCount, doneCount }) {
                 className="rise-up block"
                 style={{ animationDelay: "180ms" }}
               >
-                natin ngayon?
+                mo ngayon bb?
               </span>
             </h1>
             <p

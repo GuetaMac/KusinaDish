@@ -107,7 +107,7 @@ export default function ChatWidget() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-24 right-5 z-50 flex h-[min(520px,calc(100vh-140px))] w-[min(380px,calc(100vw-40px))] flex-col overflow-hidden rounded-3xl border-2 border-toyo/15 bg-papel shadow-2xl">
+        <div className="fixed bottom-24 right-5 z-50 flex h-[min(560px,calc(100vh-120px))] w-[min(400px,calc(100vw-32px))] flex-col overflow-hidden rounded-3xl border-2 border-toyo/15 bg-papel shadow-2xl">
           <div className="flex items-center justify-between border-b-2 border-toyo/10 bg-dahon px-5 py-4">
             <div>
               <p className="font-display text-lg font-extrabold text-papel">
@@ -142,7 +142,7 @@ export default function ChatWidget() {
                 className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                  className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-[0.92rem] leading-relaxed ${
                     m.role === "user"
                       ? "bg-dahon text-papel"
                       : "border border-toyo/10 bg-toyo/5 text-toyo"
