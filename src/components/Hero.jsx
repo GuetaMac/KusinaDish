@@ -54,8 +54,7 @@ export default function Hero({ query, onQuery, totalCount, doneCount }) {
               className="rise-up mt-5 max-w-xl text-lg text-papel/85"
               style={{ animationDelay: "280ms" }}
             >
-              Mga ulam, sabaw, at merienda na kaya mong gawin sa bahay. Hakbang
-              por hakbang, may sukat ng sangkap.
+              Ano gusto mong lutuin, bebe?
             </p>
 
             <label
